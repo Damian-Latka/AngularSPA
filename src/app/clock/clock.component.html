@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="title">
+        This is a {{ title }} app
+    </div>
+    <div class="clock" *ngIf="hours; else loading">
+        {{ hours }}:{{ minutes }}:{{ seconds }}
+    </div>
+    <ng-template #loading>Loading..</ng-template>
+</div>

@@ -1,0 +1,37 @@
+<div class="content">
+    <div class="title">
+        To jest {{ title }}
+    </div>
+    <div class="container">
+        <div class="row">
+            <input type="number" id="hoursInput" class="input" min = 0 max = 23 value = 0>
+            <input type="number" id="minutesInput" class="input" min = 0 max = 59 value = 0>
+            <input type="number" id="secondsInput" class="input" min = 0 max = 59 value = 0>
+        </div>
+        <div class="row">
+            <button type="submit" class="button" id="submitBtn" (click)="setTime()">Set!</button>
+            <button type="submit" class="button" id="resetBtn" (click)="resetTime()" disabled>Reset!</button>
+        </div>
+        <div class="row">
+            <div class="display" *ngIf="timeSet; else timeNotSet">
+                <span *ngIf="hours >= 10; else lessHours">
+                    {{ hours }}
+                </span>
+                :
+                <span *ngIf="minutes >= 10; else lessMinutes" >
+                    {{ minutes }}
+                </span>
+                :
+                <span *ngIf="seconds >= 10; else lessSeconds">
+                    {{ seconds }}
+                </span>
+            <!-- TEMPLATES TO ADD A '0' BEHIND A TIME ELEMENT IN CASE ITS SMALLER THAN 10, for esthetics -->
+                <ng-template #lessHours>0{{ hours }}</ng-template>
+                <ng-template #lessMinutes>0{{ minutes }}</ng-template>
+                <ng-template #lessSeconds>0{{ seconds }}</ng-template>
+            </div>
+
+            <ng-template #timeNotSet><div class = "display" >00 : 00 : 00</div></ng-template>
+        </div>
+    </div>
+</div>

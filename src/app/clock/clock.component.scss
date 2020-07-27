@@ -1,0 +1,15 @@
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: arial;
+    font-size: 4em;
+
+    .title{
+        display: flex;
+        flex: 0 1 auto;
+    }
+    .clock{
+        
+    }
+}

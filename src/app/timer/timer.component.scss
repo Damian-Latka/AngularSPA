@@ -1,0 +1,76 @@
+$input-background: rgb(241, 96, 96);
+$input-border: 2px solid rgb(107, 107, 107);
+
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .title{
+        font-size: 4em;
+
+    }
+    .container{
+        
+        .row{
+            display: flex;
+            flex-direction: row;
+
+            input{
+                background: $input-background;
+                border: $input-border;
+                color: #fff;
+                font-size: 2em;
+                display: flex;
+                min-width: 50px;
+                flex-grow: 1;
+                text-align: right;
+
+                &:hover{
+                    cursor: pointer;
+                    background: lighten($input-background, 10%);
+                }
+
+                &[disabled]{
+                    background: rgb(90, 90, 90);
+                    cursor: context-menu;
+                }
+            }
+
+            .button{
+                background: $input-background;
+                border: $input-border;
+                color: #fff;
+                display: flex;
+                flex-grow: 1;
+                font-size: 2em;
+                align-items: center;
+                justify-content: center;
+
+                &:hover{
+                    cursor: pointer;
+                    background: lighten($input-background, 10%);
+                }
+
+                &[disabled]{
+                    background: rgb(90, 90, 90);
+                    cursor: context-menu;
+                }
+            }
+
+            .display{
+                display: flex;
+                flex: 1 0 auto;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                font-size: 2em;
+            }
+        }
+    }
+
+    .invisible{
+        display:none;
+    }
+}

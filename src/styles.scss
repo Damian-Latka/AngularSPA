@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+$base-text-color: rgb(216, 142, 142);
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: rgb(44, 13, 94);
+    color: lighten($base-text-color, 15%);
+}
+
+a{
+    color: $base-text-color;
+    text-decoration: none;
+    &:visited{
+        text-decoration: none;
+        color: $base-text-color;
+    }
+    &:hover{
+        color: lighten($base-text-color, 20%)
+    }
+}
