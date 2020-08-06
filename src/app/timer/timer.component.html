@@ -1,30 +1,40 @@
 <div class="content">
     <div class="title">
-        To jest {{ title }}
+        This is a {{ title }}
     </div>
     <div class="container">
         <div class="row">
-            <input type="number" id="hoursInput" class="input" min = 0 max = 23 value = 0>
-            <input type="number" id="minutesInput" class="input" min = 0 max = 59 value = 0>
-            <input type="number" id="secondsInput" class="input" min = 0 max = 59 value = 0>
+            <button class="change-time" (click)="changeTime(1, 'hours')" [disabled]="timeSet ? true : false">+</button>
+            <button class="change-time" (click)="changeTime(1, 'minutes')" [disabled]="timeSet ? true : false">+</button>
+            <button class="change-time" (click)="changeTime(1, 'seconds')" [disabled]="timeSet ? true : false">+</button>
         </div>
         <div class="row">
-            <button type="submit" class="button" id="submitBtn" (click)="setTime()">Set!</button>
-            <button type="submit" class="button" id="resetBtn" (click)="resetTime()" disabled>Reset!</button>
+            <input type="number" id="hoursInput" class="input" value = 0 readonly [disabled]="timeSet ? true : false">
+            <input type="number" id="minutesInput" class="input" value = 0 readonly [disabled]="timeSet ? true : false">
+            <input type="number" id="secondsInput" class="input" value = 0 readonly [disabled]="timeSet ? true : false">
+        </div>
+        <div class="row">
+            <button class="change-time" (click)="changeTime(-1, 'hours')" [disabled]="timeSet ? true : false">-</button>
+            <button class="change-time" (click)="changeTime(-1, 'minutes')" [disabled]="timeSet ? true : false">-</button>
+            <button class="change-time" (click)="changeTime(-1, 'seconds')" [disabled]="timeSet ? true : false">-</button>
+        </div>
+        <div class="row">
+            <button type="submit" class="button" id="submitBtn" (click)="setTime()" [disabled]="timeSet ? true : false">Set!</button>
+            <button type="submit" class="button" id="resetBtn" (click)="resetTime()" [disabled]="timeSet ? false : true">Reset!</button>
         </div>
         <div class="row">
             <div class="display" *ngIf="timeSet; else timeNotSet">
-                <span *ngIf="hours >= 10; else lessHours">
+                <ng-template [ngIf]="hours >= 10" [ngIfElse]="lessHours">
                     {{ hours }}
-                </span>
+                </ng-template>
                 :
-                <span *ngIf="minutes >= 10; else lessMinutes" >
+                <ng-template [ngIf]="minutes >= 10" [ngIfElse]="lessMinutes">
                     {{ minutes }}
-                </span>
+                </ng-template>
                 :
-                <span *ngIf="seconds >= 10; else lessSeconds">
+                <ng-template [ngIf]="seconds >= 10" [ngIfElse]="lessSeconds">
                     {{ seconds }}
-                </span>
+                </ng-template>
             <!-- TEMPLATES TO ADD A '0' BEHIND A TIME ELEMENT IN CASE ITS SMALLER THAN 10, for esthetics -->
                 <ng-template #lessHours>0{{ hours }}</ng-template>
                 <ng-template #lessMinutes>0{{ minutes }}</ng-template>

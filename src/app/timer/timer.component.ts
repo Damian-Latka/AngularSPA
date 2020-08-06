@@ -9,45 +9,34 @@ import { Time } from '@angular/common';
 })
 export class TimerComponent implements OnInit {
 
-  title: string = "Minutnik";
+  title: string = "Timer App";
   iv: any;
   timeSet: boolean = false;
 
-  submitBtn: HTMLButtonElement;
-  resetBtn: HTMLButtonElement;
   display: HTMLElement;
   hoursInput: HTMLInputElement;
   minutesInput: HTMLInputElement;
   secondsInput: HTMLInputElement;
 
-  hours: number;
-  minutes: number;
-  seconds: number;
+  hours: number = 4;
+  minutes: number = 2;
+  seconds: number = 0;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.hoursInput = <HTMLInputElement>document.getElementById("hoursInput");
+    this.minutesInput = <HTMLInputElement>document.getElementById("minutesInput");
+    this.secondsInput = <HTMLInputElement>document.getElementById("secondsInput");
   }
 
   public setTime(){
     console.log("set time");
     this.timeSet = true;
 
-    this.hoursInput = <HTMLInputElement>document.getElementById("hoursInput");
-    this.minutesInput = <HTMLInputElement>document.getElementById("minutesInput");
-    this.secondsInput = <HTMLInputElement>document.getElementById("secondsInput");
     this.hours = this.hoursInput.valueAsNumber;
     this.minutes = this.minutesInput.valueAsNumber;
     this.seconds = this.secondsInput.valueAsNumber;
-
-    this.submitBtn = <HTMLButtonElement>document.getElementById("submitBtn");
-    this.resetBtn = <HTMLButtonElement>document.getElementById("resetBtn");
-
-    this.submitBtn.setAttribute("disabled", "");
-    this.hoursInput.setAttribute("disabled", "");
-    this.minutesInput.setAttribute("disabled", "");
-    this.secondsInput.setAttribute("disabled", "");
-    this.resetBtn.removeAttribute("disabled");
 
     this.iv = setInterval(() => {
       this.displayTime(); 
@@ -55,20 +44,41 @@ export class TimerComponent implements OnInit {
   }
 
   public displayTime(){
+    //check if there is any time left
     if(this.hours === 0 && this.minutes === 0 && this.seconds === 0){
       clearInterval(this.iv);
       alert('TIMER FINISHED');
+      this.resetTime();
     }
-    else
-    {
-      this.seconds--;
-      if(this.seconds < 0){
-        this.minutes--;
-        this.seconds = 59;
+    this.seconds--;
+    if(this.seconds < 0){
+      this.minutes--;
+      this.seconds = 59;
+    }
+    if(this.minutes < 0){
+      this.hours--;
+      this.minutes = 59;
+    }
+  }
+
+  public changeTime(ammount: number, segment: string){
+    console.log(ammount + ' ' + segment);
+    if(segment === "hours"){
+      this.hoursInput.valueAsNumber += ammount;
+      if(this.hoursInput.valueAsNumber < 0){
+        this.hoursInput.valueAsNumber++;
       }
-      if(this.minutes < 0){
-        this.hours--;
-        this.minutes = 59;
+    }
+    else if(segment === "minutes"){
+      this.minutesInput.valueAsNumber += ammount;
+      if(this.minutesInput.valueAsNumber < 0){
+        this.minutesInput.valueAsNumber++;
+      }
+    }
+    else if(segment === "seconds"){
+      this.secondsInput.valueAsNumber += ammount;
+      if(this.secondsInput.valueAsNumber < 0){
+        this.secondsInput.valueAsNumber++;
       }
     }
   }
@@ -80,11 +90,5 @@ export class TimerComponent implements OnInit {
     this.hoursInput.valueAsNumber = 0;
     this.minutesInput.valueAsNumber = 0;
     this.secondsInput.valueAsNumber = 0;
-
-    this.submitBtn.removeAttribute("disabled");
-    this.hoursInput.removeAttribute("disabled");
-    this.minutesInput.removeAttribute("disabled");
-    this.secondsInput.removeAttribute("disabled");
-    this.resetBtn.setAttribute("disabled", "");
   }
 }
