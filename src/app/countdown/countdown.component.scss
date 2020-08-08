@@ -1,0 +1,76 @@
+$input-background: rgb(241, 96, 96);
+$input-border: 2px solid rgb(107, 107, 107);
+
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .title{
+        font-size: 4em;
+        margin-bottom: 25px;
+    }
+    .container{
+        width:40%;
+    }
+    .container{
+
+        .row{
+            display: flex;
+            flex-direction: row;
+
+            .date{
+                display: flex;
+                flex: 3 0 80px;
+            }
+            .time{
+                display: flex;
+                flex: 1 0 50px;
+            }
+
+            input{
+                display: flex;
+                background: $input-background;
+                border: $input-border;
+                color: #fff;
+                font-size: 2em;
+                display: flex;
+                min-width: 50px;
+                flex-grow: 1;
+                text-align: center;
+
+                &:hover{
+                    background: lighten($input-background, 6%);
+                }
+            }
+            .display{
+                display: flex;
+                flex: 1 0 auto;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                font-size: 1.5em;
+
+            }
+            p{
+                margin-left: 5px;
+                color:rgb(94, 245, 152);
+            }
+
+            .label{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                font-size: 20px;
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button {  
+       opacity: 1;
+    }
+}

@@ -4,6 +4,11 @@
     </div>
     <div class="container">
         <div class="row">
+            <div class="label">Hours</div>
+            <div class="label">Minutes</div>
+            <div class="label">Seconds</div>
+        </div>
+        <div class="row">
             <button class="change-time" (click)="changeTime(1, 'hours')" [disabled]="timeSet ? true : false">+</button>
             <button class="change-time" (click)="changeTime(1, 'minutes')" [disabled]="timeSet ? true : false">+</button>
             <button class="change-time" (click)="changeTime(1, 'seconds')" [disabled]="timeSet ? true : false">+</button>
@@ -23,7 +28,7 @@
             <button type="submit" class="button" id="resetBtn" (click)="resetTime()" [disabled]="timeSet ? false : true">Reset!</button>
         </div>
         <div class="row">
-            <div class="display" *ngIf="timeSet; else timeNotSet">
+            <div class="display" *ngIf="timeSet; else timeNotSet" [ngStyle]="{'color': timeSet ? 'rgb(94, 245, 152)' : 'rgb(190, 121, 121)'}">
                 <ng-template [ngIf]="hours >= 10" [ngIfElse]="lessHours">
                     {{ hours }}
                 </ng-template>

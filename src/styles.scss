@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-$base-text-color: rgb(216, 142, 142);
+$base-text-color: rgb(190, 121, 121);
+$base-background-color: #181818;
 
 *{
     margin: 0;
@@ -8,8 +9,9 @@ $base-text-color: rgb(216, 142, 142);
 }
 
 body{
-    background: rgb(44, 13, 94);
+    background: $base-background-color;
     color: lighten($base-text-color, 15%);
+    font-family: Arial, Helvetica, sans-serif
 }
 
 a{

@@ -1,1 +1,30 @@
-<p>countdown works!</p>
+<div class="content">
+    <div class="title">
+        This is a {{ title }} app.
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="date label">Date [yyyy-mm-dd]</div>
+            <div class="time label">Hour</div>
+            <div class="time label">Minute</div>
+            <div class="time label">Second</div>
+        </div>
+        <div class="row">
+            <input type="date" class="date" max="2999-12-31" [valueAsDate]="targetDate" (input)="targetDate=$event.target.valueAsDate; sumbitDate()">
+            <input type="number" class="time" min=0 max=23 (input)="checkNum($event.target.valueAsNumber) ? hour = 0 : checkValue($event.target.valueAsNumber, 'hour'); sumbitDate()" [valueAsNumber]="hour" placeholder="0">
+            <input type="number" class="time" min=0 max=59 (input)="checkNum($event.target.valueAsNumber) ? minute = 0 : checkValue($event.target.valueAsNumber, 'minute'); sumbitDate()" [valueAsNumber]="minute" placeholder="0">
+            <input type="number" class="time" min=0 max=59 (input)="checkNum($event.target.valueAsNumber) ? second = 0 : checkValue($event.target.valueAsNumber, 'second'); sumbitDate()" [valueAsNumber]="second" placeholder="0">
+        </div>
+        <div class="row">
+            <ng-template [ngIf]="difference > 1000" [ngIfElse]="setGoalHit">
+                <div class="display">Time until the date above: <p> {{ timeDifferenceString }} </p> </div>
+            </ng-template>
+        </div>
+        
+        <ng-template #setGoalHit>
+            <div class="display">
+                Selected date has been reached
+            </div>
+        </ng-template>
+    </div>
+</div>

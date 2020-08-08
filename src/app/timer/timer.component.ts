@@ -1,6 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TimeInterval } from 'rxjs';
-import { Time } from '@angular/common';
 
 @Component({
   selector: 'app-timer',
