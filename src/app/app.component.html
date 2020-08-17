@@ -1,16 +1,18 @@
 <header>
-  <div class="container">
-    <nav>
-      <ul>
-        <li><a href="#" routerLink="/">Home</a></li>
-        <li><a href="#" routerLink="/clock">Clock</a></li>
-        <li><a href="#" routerLink="/timer">Timer</a></li>
-        <li><a href="#" routerLink="/countdown">Countdown</a></li>
-      </ul>
-    </nav>
-  </div>
+  <nav (pointerleave)="navToggled === true ? toggleNav() : false">
+    <div class="burger" (click)="toggleNav()"> 
+      <ng-template [ngIf]="navToggled" [ngIfElse]="cross"> <fa-icon [icon]=faTimes></fa-icon> </ng-template> 
+      <ng-template #cross> <fa-icon [icon]=faBars></fa-icon> </ng-template>
+    </div>
+    <ul class="navigation-list" [ngClass]="{'navigation-list-active': navToggled === true ? true : false}"> 
+      <li class="navigation-list-item"><a class="navigation-link" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" (click)="toggleNav()">Home</a></li>
+      <li class="navigation-list-item"><a class="navigation-link" routerLink="/clock" routerLinkActive="active-link" (click)="toggleNav()">Clock</a></li>
+      <li class="navigation-list-item"><a class="navigation-link" routerLink="/timer" routerLinkActive="active-link" (click)="toggleNav()">Timer</a></li>
+      <li class="navigation-list-item"><a class="navigation-link" routerLink="/countdown" routerLinkActive="active-link" (click)="toggleNav()">Countdown</a></li>
+    </ul>
+  </nav>
 </header>
 
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+<section class="app">
+    <router-outlet></router-outlet>
+</section>

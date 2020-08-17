@@ -1,9 +1,9 @@
-<div class="container">
+<section class="content">
     <div class="title">
-        This is a {{ title }} app
+        This is a {{ title }} App
     </div>
     <div class="clock" *ngIf="hours; else loading">
         {{ hours }}:{{ minutes }}:{{ seconds }}
     </div>
-    <ng-template #loading>Loading..</ng-template>
-</div>
+    <ng-template #loading><div class="clock">Loading..</div></ng-template>
+</section>

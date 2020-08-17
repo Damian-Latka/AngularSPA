@@ -1,31 +1,31 @@
-<div class="content">
+<section class="content">
     <div class="title">
-        This is a {{ title }}
+        This is a {{ title }} App
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="label">Hours</div>
-            <div class="label">Minutes</div>
-            <div class="label">Seconds</div>
+    <div class="main">
+        <div class="columns">
+            <div class="column">
+                <div class="label">Hours</div>
+                <button class="change-time" (click)="changeTime(1, 'hours')" [disabled]="timeSet ? true : false">+</button>
+                <input type="number" id="hoursInput" class="input" value = 0 readonly [disabled]="timeSet ? true : false">
+                <button class="change-time" (click)="changeTime(-1, 'hours')" [disabled]="timeSet ? true : false">-</button>
+            </div>
+            <div class="column">
+                <div class="label">Minutes</div>
+                <button class="change-time" (click)="changeTime(1, 'minutes')" [disabled]="timeSet ? true : false">+</button>
+                <input type="number" id="minutesInput" class="input" value = 0 readonly [disabled]="timeSet ? true : false">
+                <button class="change-time" (click)="changeTime(-1, 'minutes')" [disabled]="timeSet ? true : false">-</button>
+            </div>
+            <div class="column">
+                <div class="label">Seconds</div>
+                <button class="change-time" (click)="changeTime(1, 'seconds')" [disabled]="timeSet ? true : false">+</button>
+                <input type="number" id="secondsInput" class="input" value = 0 readonly [disabled]="timeSet ? true : false">
+                <button class="change-time" (click)="changeTime(-1, 'seconds')" [disabled]="timeSet ? true : false">-</button>
+            </div>
         </div>
         <div class="row">
-            <button class="change-time" (click)="changeTime(1, 'hours')" [disabled]="timeSet ? true : false">+</button>
-            <button class="change-time" (click)="changeTime(1, 'minutes')" [disabled]="timeSet ? true : false">+</button>
-            <button class="change-time" (click)="changeTime(1, 'seconds')" [disabled]="timeSet ? true : false">+</button>
-        </div>
-        <div class="row">
-            <input type="number" id="hoursInput" class="input" value = 0 readonly [disabled]="timeSet ? true : false">
-            <input type="number" id="minutesInput" class="input" value = 0 readonly [disabled]="timeSet ? true : false">
-            <input type="number" id="secondsInput" class="input" value = 0 readonly [disabled]="timeSet ? true : false">
-        </div>
-        <div class="row">
-            <button class="change-time" (click)="changeTime(-1, 'hours')" [disabled]="timeSet ? true : false">-</button>
-            <button class="change-time" (click)="changeTime(-1, 'minutes')" [disabled]="timeSet ? true : false">-</button>
-            <button class="change-time" (click)="changeTime(-1, 'seconds')" [disabled]="timeSet ? true : false">-</button>
-        </div>
-        <div class="row">
-            <button type="submit" class="button" id="submitBtn" (click)="setTime()" [disabled]="timeSet ? true : false">Set!</button>
-            <button type="submit" class="button" id="resetBtn" (click)="resetTime()" [disabled]="timeSet ? false : true">Reset!</button>
+            <button type="submit" class="button-control" id="submitBtn" (click)="setTime()" [disabled]="timeSet ? true : false">Set!</button>
+            <button type="submit" class="button-control" id="resetBtn" (click)="resetTime()" [disabled]="timeSet ? false : true">Reset!</button>
         </div>
         <div class="row">
             <div class="display" *ngIf="timeSet; else timeNotSet" [ngStyle]="{'color': timeSet ? 'rgb(94, 245, 152)' : 'rgb(190, 121, 121)'}">
@@ -49,4 +49,4 @@
             <ng-template #timeNotSet><div class = "display" >00 : 00 : 00</div></ng-template>
         </div>
     </div>
-</div>
+</section>

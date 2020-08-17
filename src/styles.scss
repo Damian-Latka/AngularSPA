@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-$base-text-color: rgb(190, 121, 121);
-$base-background-color: #181818;
+@import "variables";
 
 *{
     margin: 0;
@@ -9,19 +8,36 @@ $base-background-color: #181818;
 }
 
 body{
-    background: $base-background-color;
-    color: lighten($base-text-color, 15%);
-    font-family: Arial, Helvetica, sans-serif
+    background: $primary-background-color;
+    color: $primary-text-color-bright;
+    font-family: Arial, Helvetica, sans-serif;
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1100px;
+        min-height: 100vh;
+
+        app-root{
+            width: 100%;
+            .content{
+                background: $secondary-background-color;
+                margin-top: 0;
+            }
+        }
+    }
 }
 
-a{
-    color: $base-text-color;
-    text-decoration: none;
-    &:visited{
-        text-decoration: none;
-        color: $base-text-color;
-    }
-    &:hover{
-        color: lighten($base-text-color, 20%)
+@media (min-width: 570px) {
+    body{
+        .container{
+
+            .content{
+                margin-top: 1em!important;
+            }
+        }
     }
 }

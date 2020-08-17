@@ -1,100 +1,124 @@
-$input-background: rgb(241, 96, 96);
-$input-border: 2px solid rgb(107, 107, 107);
+@import "../../variables.scss";
 
 .content{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
 
     .title{
-        font-size: 4em;
+        padding: 0.625em 0;
+        border-bottom: 1px solid $primary-text-color;
+        text-align: center;
+        max-width: 500px;
+        margin: 0 auto;
     }
-    .container{
-        width:40%;
-    }
-    .container{
+    .main{
+        // border: 1px solid red;
+        .columns{
+            display: flex;
+            justify-content: center;
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            padding-top: 0.625em;
+            // border: 1px solid red;
 
+            .column{
+                flex-direction: column;
+                width: 30%;
+                
+
+                .label{
+                    font-size: 1.5rem;
+                    text-align: center;
+                }
+                .change-time{
+                    display: block;
+                    background: $primary-input-background;
+                    border: $secondary-input-border;
+                    &:hover{
+                        background-color: lighten($primary-input-background, 10%);
+                        cursor: pointer;
+                    }
+                }
+                .input{
+                    display: block;
+                    text-align: center;
+                    background: $secondary-input-background;
+                    border: $primary-input-border;
+                    cursor: default;
+                }
+                .change-time,
+                .input{
+                    &:disabled{
+                        background: $disabled-input-background;
+                        border: $disabled-input-border;
+    
+                        &:hover{
+                            background: $disabled-input-background;
+                            cursor: default;
+                        }
+                    }
+                }
+                .label,
+                .change-time,
+                .input{
+                    font-size: 1.25rem;
+                    width: 100%;
+                    padding: 0.25rem 0;
+                }
+            }
+        }
         .row{
             display: flex;
-            flex-direction: row;
+            justify-content: center;
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
 
-            .label{
-                display: flex;
-                flex: 1 0 0px;
-                align-items: center;
-                justify-content: center;
-                font-size: 2em;
-            }
-
-            input{
-                display: flex;
-                background: $input-background;
-                border: $input-border;
-                color: #fff;
-                font-size: 2em;
-                display: flex;
-                min-width: 50px;
-                flex-grow: 1;
-                text-align: center;
-
-                &[disabled]{
-                    background: rgb(90, 90, 90);
-                    cursor: context-menu;
-                }
-            }
-
-            .button{
-                background: $input-background;
-                border: $input-border;
-                color: #fff;
-                display: flex;
-                flex: 1 0 0px;
-                font-size: 2em;
-                align-items: center;
-                justify-content: center;
+            .button-control{
+                width: 45%;
+                font-size: 1.25rem;
+                padding: 0.25rem 0;
+                background: $secondary-input-background;
+                border: $secondary-input-border;
 
                 &:hover{
-                    cursor: pointer;
-                    background: lighten($input-background, 10%);
-                }
-
-                &[disabled]{
-                    background: rgb(90, 90, 90);
-                    cursor: context-menu;
-                }
-            }
-
-            .change-time{
-                display: flex;
-                flex: 1 0 auto;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                font-size: 2em;
-
-                &:hover{
+                    background-color: lighten($secondary-input-background, 10%);
                     cursor: pointer;
                 }
-            }
 
+                &:disabled{
+                    background: $disabled-input-background;
+                    border: $disabled-input-border;
+
+                    &:hover{
+                        background: $disabled-input-background;
+                        cursor: default;
+                    }
+                }
+            }
             .display{
-                display: flex;
-                flex: 1 0 auto;
-                align-items: center;
-                justify-content: center;
+                width: 90%;
                 text-align: center;
-                font-size: 2em;
+                font-size: 3rem;
+            }
+            &:last-child{
+                padding: 0.625em 0;
             }
         }
     }
-
-    .invisible{
-        display:none;
+    .title,
+    .main{
+        font-size: 3rem;
     }
+}
 
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-    }
+
+.invisible{
+    display:none;
+}
+
+// making the arrows on inputs disappear
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }

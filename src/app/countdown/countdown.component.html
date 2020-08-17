@@ -1,30 +1,37 @@
-<div class="content">
+<section class="content">
     <div class="title">
-        This is a {{ title }} app.
+        This is a {{ title }} App
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="date label">Date [yyyy-mm-dd]</div>
-            <div class="time label">Hour</div>
-            <div class="time label">Minute</div>
-            <div class="time label">Second</div>
-        </div>
-        <div class="row">
-            <input type="date" class="date" max="2999-12-31" [valueAsDate]="targetDate" (input)="targetDate=$event.target.valueAsDate; sumbitDate()">
-            <input type="number" class="time" min=0 max=23 (input)="checkNum($event.target.valueAsNumber) ? hour = 0 : checkValue($event.target.valueAsNumber, 'hour'); sumbitDate()" [valueAsNumber]="hour" placeholder="0">
-            <input type="number" class="time" min=0 max=59 (input)="checkNum($event.target.valueAsNumber) ? minute = 0 : checkValue($event.target.valueAsNumber, 'minute'); sumbitDate()" [valueAsNumber]="minute" placeholder="0">
-            <input type="number" class="time" min=0 max=59 (input)="checkNum($event.target.valueAsNumber) ? second = 0 : checkValue($event.target.valueAsNumber, 'second'); sumbitDate()" [valueAsNumber]="second" placeholder="0">
-        </div>
-        <div class="row">
-            <ng-template [ngIf]="difference > 1000" [ngIfElse]="setGoalHit">
-                <div class="display">Time until the date above: <p> {{ timeDifferenceString }} </p> </div>
-            </ng-template>
-        </div>
-        
-        <ng-template #setGoalHit>
-            <div class="display">
-                Selected date has been reached
+    <div class="main">
+        <!-- date input -->
+        <div class="columns">
+            <div class="column">
+                <div class="label">Date [yyyy-mm-dd]</div>
+                <input type="date" class="time-input" max="2999-12-31" [valueAsDate]="targetDate" (input)="targetDate=$event.target.valueAsDate; sumbitDate()" (keydown)="deny()">
             </div>
-        </ng-template>
+        </div>
+        <!-- time input -->
+        <div class="columns">
+            <!-- hours -->
+            <div class="column">
+                <div class="label">Hours</div>
+                <input type="number" class="time-input time-input-small" min=0 max=23 (input)="checkNum($event.target.valueAsNumber) ? hour = 0 : checkValue($event.target.valueAsNumber, 'hour'); sumbitDate()" [valueAsNumber]="hour" placeholder="0">
+            </div>
+            <!-- minutes -->
+            <div class="column">
+                <div class="label">Minutes</div>
+                <input type="number" class="time-input time-input-small" min=0 max=59 (input)="checkNum($event.target.valueAsNumber) ? minute = 0 : checkValue($event.target.valueAsNumber, 'minute'); sumbitDate()" [valueAsNumber]="minute" placeholder="0">
+            </div>
+            <!-- seconds -->
+            <div class="column">
+                <div class="label">Seconds</div>
+                <input type="number" class="time-input time-input-small" min=0 max=59 (input)="checkNum($event.target.valueAsNumber) ? second = 0 : checkValue($event.target.valueAsNumber, 'second'); sumbitDate()" [valueAsNumber]="second" placeholder="0">
+            </div>
+        </div>
     </div>
-</div>
+    <!-- display -->
+    <div class="display">
+        <ng-template [ngIf]="difference > 1000" [ngIfElse]="setGoalHit"> Time until the date above: <p> {{ timeDifferenceString }} </p> </ng-template>
+        <ng-template #setGoalHit>Selected date has been reached</ng-template>
+    </div>
+</section>

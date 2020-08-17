@@ -76,6 +76,10 @@ export class CountdownComponent implements OnInit {
     this.sumbitDate();
   }
 
+  deny(){
+    event.preventDefault();
+  }
+
   checkNum(num: number): boolean{
     let isNumber: boolean = isNaN(num);
     return isNumber;

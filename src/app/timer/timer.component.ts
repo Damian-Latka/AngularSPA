@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TimerComponent implements OnInit {
 
-  title: string = "Timer App";
+  title: string = "Timer";
   iv: any;
   timeSet: boolean = false;
 
